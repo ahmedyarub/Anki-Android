@@ -106,6 +106,10 @@
             android:summary="@string/show_progress_summ"
             android:title="@string/show_progress" />
         <SwitchPreferenceCompat
+            android:key="@string/show_hidden_decks_preference"
+            android:defaultValue="false"
+            android:title="@string/show_hidden_decks" />
+        <SwitchPreferenceCompat
             android:key="@string/show_eta_preference"
             android:defaultValue="false"
             android:summary="@string/show_eta_summ"

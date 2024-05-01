@@ -131,7 +131,7 @@ class ReminderService : BroadcastReceiver() {
             return null
         }
         try {
-            val dues = col.sched.deckDueTree().children
+            val dues = col.sched.deckDueTree(false).children
             val decks: MutableList<DeckNode> = ArrayList(dues.size)
             // This loop over top level deck only. No notification will ever occur for subdecks.
             for (node in dues) {

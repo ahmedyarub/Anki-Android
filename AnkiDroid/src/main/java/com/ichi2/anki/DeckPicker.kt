@@ -2054,11 +2054,12 @@ open class DeckPicker :
         }
         Timber.d("updateDeckList")
         loadDeckCounts?.cancel()
+        val preferences = baseContext.sharedPrefs()
         loadDeckCounts = launchCatchingTask {
             withProgress {
                 Timber.d("Refreshing deck list")
                 val deckData = withCol {
-                    Pair(sched.deckDueTree(), this.isEmpty)
+                    Pair(sched.deckDueTree(preferences.getBoolean("showHiddenDecks", false)), this.isEmpty)
                 }
                 onDecksLoaded(deckData.first, deckData.second)
             }
