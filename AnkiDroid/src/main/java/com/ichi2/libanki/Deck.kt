@@ -76,7 +76,13 @@ class Deck : JSONObject {
         }
 
     var hidden: Boolean
-        get() = getBoolean("hidden")
+        get() {
+            if (has("hidden")) {
+                return getBoolean("hidden")
+            } else {
+                return false
+            }
+        }
         set(value) {
             put("hidden", value)
         }

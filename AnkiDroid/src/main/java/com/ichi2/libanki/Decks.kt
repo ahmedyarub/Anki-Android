@@ -505,6 +505,11 @@ class Decks(private val col: Collection) {
         return this.get(did)?.isFiltered == true
     }
 
+    @LibAnkiAlias("is_hidden")
+    fun isHidden(did: DeckId): Boolean {
+        return this.get(did)?.hidden == true
+    }
+
     /*
      * Not in libAnki
      *************************************************************

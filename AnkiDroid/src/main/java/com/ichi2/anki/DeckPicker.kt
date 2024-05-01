@@ -379,11 +379,10 @@ open class DeckPicker :
         val deckId = v.tag as DeckId
         Timber.i("DeckPicker:: Long tapped on deck with id %d", deckId)
         launchCatchingTask {
-            val (deckName, isDynamic, hasBuriedInDeck) = withCol {
+            val (deck, hasBuriedInDeck) = withCol {
                 decks.select(deckId)
-                Triple(
-                    decks.name(deckId),
-                    decks.isFiltered(deckId),
+                Pair(
+                    decks.get(deckId),
                     sched.haveBuriedInCurrentDeck()
                 )
             }
@@ -391,9 +390,10 @@ open class DeckPicker :
             showDialogFragment(
                 DeckPickerContextMenu.newInstance(
                     id = deckId,
-                    name = deckName,
-                    isDynamic = isDynamic,
-                    hasBuriedInDeck = hasBuriedInDeck
+                    name = deck?.name!!,
+                    isDynamic = deck.isFiltered,
+                    hasBuriedInDeck = hasBuriedInDeck,
+                    hidden = deck.hidden
                 )
             )
         }
@@ -2260,11 +2260,11 @@ open class DeckPicker :
     }
 
     fun hideDeck(did: DeckId) {
-        getColUnsafe.decks.hideDeck(did);
+        getColUnsafe.decks.hideDeck(did)
     }
 
     fun unhideDeck(did: DeckId) {
-        getColUnsafe.decks.unhideDeck(did);
+        getColUnsafe.decks.unhideDeck(did)
     }
 
     @NeedsTest("14285: regression test to ensure UI is updated after this call")
