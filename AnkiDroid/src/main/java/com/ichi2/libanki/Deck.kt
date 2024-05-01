@@ -74,4 +74,10 @@ class Deck : JSONObject {
         set(value) {
             put("conf", value)
         }
+
+    var hidden: Boolean
+        get() = getBoolean("hidden")
+        set(value) {
+            put("hidden", value)
+        }
 }

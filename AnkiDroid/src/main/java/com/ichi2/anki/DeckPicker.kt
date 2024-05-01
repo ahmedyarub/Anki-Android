@@ -547,6 +547,16 @@ open class DeckPicker :
                 disableDeckAndChildrenShortcuts(deckId)
                 confirmDeckDeletion(deckId)
             }
+            DeckPickerContextMenuOption.HIDE_DECK -> {
+                Timber.i("ContextMenu: Hide deck selected")
+                hideDeck(deckId)
+                refreshState()
+            }
+            DeckPickerContextMenuOption.UNHIDE_DECK -> {
+                Timber.i("ContextMenu: Unhide deck selected")
+                unhideDeck(deckId)
+                refreshState()
+            }
             DeckPickerContextMenuOption.DECK_OPTIONS -> {
                 Timber.i("ContextMenu: Open deck options selected")
                 showContextMenuDeckOptions(deckId)
@@ -2247,6 +2257,14 @@ open class DeckPicker :
                 setAction(R.string.undo) { undo() }
             }
         }
+    }
+
+    fun hideDeck(did: DeckId) {
+        getColUnsafe.decks.hideDeck(did);
+    }
+
+    fun unhideDeck(did: DeckId) {
+        getColUnsafe.decks.unhideDeck(did);
     }
 
     @NeedsTest("14285: regression test to ensure UI is updated after this call")

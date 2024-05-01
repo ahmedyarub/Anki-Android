@@ -84,6 +84,8 @@ class DeckPickerContextMenu : AnalyticsDialogFragment() {
         DECK_OPTIONS(R.string.menu__deck_options),
         CUSTOM_STUDY(R.string.custom_study),
         DELETE_DECK(R.string.contextmenu_deckpicker_delete_deck),
+        HIDE_DECK(R.string.contextmenu_deckpicker_hide_deck),
+        UNHIDE_DECK(R.string.contextmenu_deckpicker_unhide_deck),
         EXPORT_DECK(R.string.export_deck),
         UNBURY(R.string.unbury),
         CUSTOM_STUDY_REBUILD(R.string.rebuild_cram_label),
