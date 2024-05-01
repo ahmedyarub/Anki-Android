@@ -21,6 +21,8 @@
     <string name="check_db_title">Check database?</string>
     <string name="check_db_warning">This may take a long time</string>
     <string name="contextmenu_deckpicker_delete_deck">Delete deck</string>
+    <string name="contextmenu_deckpicker_hide_deck">Hide</string>
+    <string name="contextmenu_deckpicker_unhide_deck">Unhide</string>
     <string name="delete_deck_title">Delete deck?</string>
     <string name="no_tts_available_message">No text-to-speech language available</string>
     <string name="tts_no_tts">Don’t speak</string>

@@ -369,7 +369,7 @@ open class DeckSelectionDialog : AnalyticsDialogFragment() {
 
         init {
             launchCatchingTask {
-                decksRoot = withCol { Pair(sched.deckDueTree(), this.isEmpty) }.first
+                decksRoot = withCol { Pair(sched.deckDueTree(true), this.isEmpty) }.first
                 val allDecksSet = deckNames.filter { it.deckId != 0L }.mapNotNull { decksRoot.find(it.deckId) }.toSet()
                 if (deckNames.any { it.deckId == ALL_DECKS_ID }) {
                     val newDeckNode = DeckTreeNode.newBuilder()

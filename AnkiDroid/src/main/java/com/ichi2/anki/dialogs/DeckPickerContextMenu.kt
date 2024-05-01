@@ -69,6 +69,11 @@ class DeckPickerContextMenu : AnalyticsDialogFragment() {
                 add(DeckPickerContextMenuOption.CUSTOM_STUDY)
             }
             add(DeckPickerContextMenuOption.EXPORT_DECK)
+            if (requireArguments().getBoolean(ARG_DECK_IS_HIDDEN)) {
+                add(DeckPickerContextMenuOption.UNHIDE_DECK)
+            } else {
+                add(DeckPickerContextMenuOption.HIDE_DECK)
+            }
             if (requireArguments().getBoolean(ARG_DECK_HAS_BURIED_IN_DECK)) {
                 add(DeckPickerContextMenuOption.UNBURY)
             }
@@ -84,6 +89,8 @@ class DeckPickerContextMenu : AnalyticsDialogFragment() {
         DECK_OPTIONS(R.string.menu__deck_options),
         CUSTOM_STUDY(R.string.custom_study),
         DELETE_DECK(R.string.contextmenu_deckpicker_delete_deck),
+        HIDE_DECK(R.string.contextmenu_deckpicker_hide_deck),
+        UNHIDE_DECK(R.string.contextmenu_deckpicker_unhide_deck),
         EXPORT_DECK(R.string.export_deck),
         UNBURY(R.string.unbury),
         CUSTOM_STUDY_REBUILD(R.string.rebuild_cram_label),
@@ -112,17 +119,22 @@ class DeckPickerContextMenu : AnalyticsDialogFragment() {
         @VisibleForTesting
         const val ARG_DECK_HAS_BURIED_IN_DECK = "arg_deck_has_buried_in_deck"
 
+        @VisibleForTesting
+        const val ARG_DECK_IS_HIDDEN = "arg_deck_is_hidden"
+
         fun newInstance(
             id: DeckId,
             name: String,
             isDynamic: Boolean,
-            hasBuriedInDeck: Boolean
+            hasBuriedInDeck: Boolean,
+            hidden: Boolean
         ): DeckPickerContextMenu = DeckPickerContextMenu().apply {
             arguments = bundleOf(
                 ARG_DECK_ID to id,
                 ARG_DECK_NAME to name,
                 ARG_DECK_IS_DYN to isDynamic,
-                ARG_DECK_HAS_BURIED_IN_DECK to hasBuriedInDeck
+                ARG_DECK_HAS_BURIED_IN_DECK to hasBuriedInDeck,
+                ARG_DECK_IS_HIDDEN to hidden
             )
         }
     }

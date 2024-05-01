@@ -273,6 +273,28 @@ class Decks(private val col: Collection) {
         this.save(deck)
     }
 
+    /** Hide deck. */
+    @RustCleanup("return OpChanges")
+    fun hideDeck(did: DeckId) {
+        var deck = get(did)
+
+        if (deck != null) {
+            deck.hidden = true
+            this.save(deck)
+        }
+    }
+
+    /** Unhide deck. */
+    @RustCleanup("return OpChanges")
+    fun unhideDeck(did: DeckId) {
+        var deck = get(did)
+
+        if (deck != null) {
+            deck.hidden = false
+            this.save(deck)
+        }
+    }
+
     /*
      * Drag/drop
      *************************************************************
@@ -481,6 +503,11 @@ class Decks(private val col: Collection) {
     @LibAnkiAlias("is_filtered")
     fun isFiltered(did: DeckId): Boolean {
         return this.get(did)?.isFiltered == true
+    }
+
+    @LibAnkiAlias("is_hidden")
+    fun isHidden(did: DeckId): Boolean {
+        return this.get(did)?.hidden == true
     }
 
     /*

@@ -341,7 +341,7 @@ class CardContentProvider : ContentProvider() {
             }
             DECKS -> {
                 val columns = projection ?: FlashCardsContract.Deck.DEFAULT_PROJECTION
-                val allDecks = col.sched.deckDueTree()
+                val allDecks = col.sched.deckDueTree(true)
                 val rv = MatrixCursor(columns, 1)
                 allDecks.forEach {
                     addDeckToCursor(
@@ -359,7 +359,7 @@ class CardContentProvider : ContentProvider() {
                 /* Direct access deck */
                 val columns = projection ?: FlashCardsContract.Deck.DEFAULT_PROJECTION
                 val rv = MatrixCursor(columns, 1)
-                val allDecks = col.sched.deckDueTree()
+                val allDecks = col.sched.deckDueTree(true)
                 val desiredDeckId = uri.pathSegments[1].toLong()
                 allDecks.find(desiredDeckId)?.let {
                     addDeckToCursor(it.did, it.fullDeckName, getDeckCountsFromDueTreeNode(it), rv, col, columns)

@@ -422,12 +422,12 @@ open class Scheduler(val col: Collection) {
         col.backend.emptyFilteredDeck(did)
     }
 
-    fun deckDueTree(): DeckNode {
-        return deckTree(true)
+    fun deckDueTree(showHiddenDecks: Boolean): DeckNode {
+        return deckTree(true, showHiddenDecks)
     }
 
-    fun deckTree(includeCounts: Boolean): DeckNode {
-        return DeckNode(col.backend.deckTree(now = if (includeCounts) time.intTime() else 0), "")
+    fun deckTree(includeCounts: Boolean, showHiddenDecks: Boolean): DeckNode {
+        return DeckNode(col.backend.deckTree(now = if (includeCounts) time.intTime() else 0, showHiddenDecks), "")
     }
 
     fun deckLimit(): String {

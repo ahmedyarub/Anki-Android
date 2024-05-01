@@ -28,6 +28,14 @@
         android:id="@+id/action_rename"
         android:title="@string/rename_deck"
         android:visibility = "gone"/>
+    <item
+        android:id="@+id/action_hide"
+        android:title="@string/contextmenu_deckpicker_hide_deck"
+        android:showAsAction = "always"/>
+    <item
+        android:id="@+id/action_unhide"
+        android:title="@string/contextmenu_deckpicker_unhide_deck"
+        android:visibility = "gone"/>
     <!-- the title for the following option will be set dynamically -->
     <item
         android:id="@+id/action_deck_or_study_options"
